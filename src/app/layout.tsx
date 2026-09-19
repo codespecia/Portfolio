@@ -15,9 +15,9 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "codespecia | Rakibur Rahman - Full Stack Developer",
   description: "Portfolio - Rakibur Rahman",
-  icons: {
-    icon: "/favicon.png",
-  },
+  // icons: {
+  //   icon: "/favicon.png",
+  // },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
