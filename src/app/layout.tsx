@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Sans } from "next/font/google";
+import { Space_Grotesk, DM_Sans, Cabin } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+const cabin = Cabin({
+  variable: "--font-cabin",
   subsets: ["latin"],
 });
 
@@ -15,16 +20,16 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "codespecia | Rakibur Rahman - Full Stack Developer",
   description: "Portfolio - Rakibur Rahman",
-  // icons: {
-  //   icon: "/favicon.png",
-  // },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${dmSans.variable} ${cabin.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
