@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Sans, Cabin } from "next/font/google";
+import { Space_Grotesk, DM_Sans, Baumans } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -7,8 +7,9 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
-const cabin = Cabin({
-  variable: "--font-cabin",
+const baumans = Baumans({
+  weight: "400",
+  variable: "--font-baumans",
   subsets: ["latin"],
 });
 
@@ -29,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${dmSans.variable} ${cabin.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${dmSans.variable} ${baumans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
