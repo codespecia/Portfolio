@@ -4,6 +4,7 @@
   --background: #f4f1e8;
   --primary: #171717;
   --secondary: #323232;
+  --accent: #f8f3e5;
   --border: #b5b5b5;
 }
 
@@ -12,6 +13,7 @@
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-border: var(--border);
+  --color-accent: var(--accent);
 
   --font-sans: var(--font-dm-sans);
   --font-mono: var(--font-space-grotesk);
@@ -21,5 +23,5 @@
 body {
   background: var(--background);
   color: var(--primary);
-  font-family: serif;
+  font-family: var(--font-sans);
 }
