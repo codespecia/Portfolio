@@ -51,25 +51,25 @@ export default function Navbar() {
         <div className="flex gap-8">
           <button
             onClick={() => scrollToSection("home")}
-            className={`text-primary lg:font-medium lg:text-sm hover:text-secondery transition ${active === "home" ? "text-secondery" : ""}`}
+            className={`text-primary lg:font-medium lg:text-sm hover:text-secondery transition ${active == "home" ? "text-secondery" : ""}`}
           >
             Home
           </button>
           <button
             onClick={() => scrollToSection("about")}
-            className={`text-primary lg:font-medium lg:text-sm hover:text-secondery transition ${active === "about" ? "text-secondery" : ""}`}
+            className={`text-primary lg:font-medium lg:text-sm hover:text-secondery transition ${active == "about" ? "text-secondery" : ""}`}
           >
             About
           </button>
           <button
             onClick={() => scrollToSection("projects")}
-            className={`text-primary lg:font-medium lg:text-sm hover:text-secondery transition ${active === "projects" ? "text-secondery" : ""}`}
+            className={`text-primary lg:font-medium lg:text-sm hover:text-secondery transition ${active == "projects" ? "text-secondery" : ""}`}
           >
             Projects
           </button>
           <button
             onClick={() => scrollToSection("services")}
-            className={`text-primary lg:font-medium lg:text-sm hover:text-secondery transition ${active === "services" ? "text-secondery" : ""}`}
+            className={`text-primary lg:font-medium lg:text-sm hover:text-secondery transition ${active == "services" ? "text-secondery" : ""}`}
           >
             Services
           </button>
