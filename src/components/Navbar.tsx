@@ -5,36 +5,48 @@ import { useScrollToSection } from "../hooks/scrollToSection";
 
 export default function Navbar() {
   const [active, setActive] = useState("home");
+  const scrollToSection = useScrollToSection();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["home", "about", "projects", "services", "contact"];
+    const sections = ["home", "about", "projects", "services", "contact"];
 
-      for (let id of sections) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            setActive(id);
-            break;
-          }
+    // Intersection Observer is much more performant than a scroll event listener
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id);
         }
-      }
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const observerOptions = {
+      root: null,
+      // Adjust rootMargin to trigger active state earlier or later as it enters the viewport
+      rootMargin: "-20% 0px -70% 0px",
+      threshold: 0,
+    };
 
-  const scrollToSection = useScrollToSection();
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <>
       <div className="h-14 pr-12 pl-12 flex fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-400 items-center justify-between border-b border-border bg-backgound/80 backdrop-blur-sm">
         <h1
           onClick={() => scrollToSection("home")}
-          className="font-logo lg:text-[18px] text-secondery"
+          className="font-logo lg:text-[18px] text-secondery cursor-pointer"
         >
           codespecia.in
         </h1>
@@ -65,9 +77,7 @@ export default function Navbar() {
           </button>
           <button
             onClick={() => scrollToSection("contact")}
-            className={
-              "text-gray-100 lg:font-medium lg:text-sm px-3 py-1 rounded-sm border-2 border-secondery bg-secondery"
-            }
+            className="text-gray-100 lg:font-medium lg:text-sm px-3 py-1 rounded-sm border-2 border-secondery bg-secondery"
           >
             Let's Talk
           </button>
