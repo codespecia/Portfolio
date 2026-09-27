@@ -10,7 +10,6 @@ export default function Navbar() {
   useEffect(() => {
     const sections = ["home", "about", "projects", "services", "contact"];
 
-    // Intersection Observer is much more performant than a scroll event listener
     const observerCallback: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -21,7 +20,6 @@ export default function Navbar() {
 
     const observerOptions = {
       root: null,
-      // Adjust rootMargin to trigger active state earlier or later as it enters the viewport
       rootMargin: "-20% 0px -70% 0px",
       threshold: 0,
     };
