@@ -25,7 +25,8 @@ body {
   cursor: default;
 }
 
-button {
+button,
+a {
   cursor: pointer;
 }
 
