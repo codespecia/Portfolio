@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useScrollToSection } from "../hooks/scrollToSection";
+import { useScrollToSection } from "@/hooks/index";
 
 export default function Navbar() {
   const [active, setActive] = useState("home");
