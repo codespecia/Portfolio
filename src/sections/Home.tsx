@@ -6,7 +6,7 @@ export default function HomeSec() {
     <>
       <section
         id="home"
-        className="pt-16 max-h-250 lg:min-h-screen max-w-375 mx-auto flex justify-center items-center"
+        className="pt-16 min-h-screen max-w-375 mx-auto flex justify-center items-center"
       >
         <div className="flex justify-center items-center flex-col gap-4 w-xl h-fit">
           <div className="flex items-center gap-3 border border-border pr-3 pl-3 pt-1.5 pb-1.5 rounded-md lg:text-sm">
