@@ -5,9 +5,9 @@ export default function AboutSec() {
     <>
       <section
         id="about"
-        className="scroll-mt-24 min-h-screen max-w-375 mx-auto mt-16 lg:px-16 flex flex-col items-center gap-16"
+        className="scroll-mt-24 min-h-screen mx-auto mt-16 lg:px-16 flex flex-col items-center gap-16"
       >
-        <div className="w-250 flex flex-col gap-2">
+        <div className="max-w-250 flex flex-col gap-2">
           <h1 className="text-3xl font-medium text-secondery font-mono">
             About
           </h1>
