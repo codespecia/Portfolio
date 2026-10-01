@@ -72,34 +72,27 @@ export default function Navbar() {
     };
 
     if (isMobile) {
-      // Close menu first
       setIsOpen(false);
 
-      // Wait for the mobile menu to finish closing
       setTimeout(() => {
         scrollToElement();
       }, 200);
     } else {
-      // Desktop: absolutely no delay
       scrollToElement();
     }
   };
 
   return (
     <nav className="fixed top-0 left-1/2 z-50 w-full max-w-400 -translate-x-1/2">
-      {/* Glass Container */}
       <div className="overflow-hidden border-b border-border bg-backgound/80 backdrop-blur-sm">
-        {/* Navbar */}
         <div className="flex h-14 items-center justify-between px-6 lg:px-12">
-          {/* Logo */}
-          <button
+          <h1
             onClick={() => handleNavigation("home")}
             className="font-logo text-[18px] text-secondery"
           >
             codespecia.in
-          </button>
+          </h1>
 
-          {/* Desktop Menu */}
           <div className="hidden items-center gap-8 lg:flex">
             {links.map((link) => (
               <button
@@ -115,7 +108,6 @@ export default function Navbar() {
               </button>
             ))}
 
-            {/* Let's Talk */}
             <button
               onClick={() => handleNavigation("contact")}
               className="rounded-sm border-2 border-secondery bg-secondery px-3 py-1 text-sm font-medium text-gray-100 transition-opacity duration-200 hover:opacity-90"
@@ -124,7 +116,6 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Hamburger */}
           <button
             type="button"
             onClick={() => setIsOpen((prev) => !prev)}
@@ -152,7 +143,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         <div
           className={`grid transition-all duration-200 ease-out lg:hidden ${
             isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
@@ -175,7 +165,6 @@ export default function Navbar() {
                   </button>
                 ))}
 
-                {/* Let's Talk */}
                 <button
                   onClick={() => handleNavigation("contact")}
                   className="rounded-sm border-2 border-secondery bg-secondery px-4 py-2 text-sm font-medium text-gray-100 transition-opacity duration-200 hover:opacity-90"
