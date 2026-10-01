@@ -5,6 +5,7 @@
   --primary: #6a7282;
   --secondery: #1e2939;
   --border: #d1d5dc;
+  --cardBG: #eeeeee;
 }
 
 @theme inline {
@@ -12,6 +13,7 @@
   --color-primary: var(--primary);
   --color-secondery: var(--secondery);
   --color-border: var(--border);
+  --color-cardBG: var(--cardBG);
 
   --font-sans: var(--font-dm-sans);
   --font-mono: var(--font-space-grotesk);

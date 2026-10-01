@@ -12,7 +12,7 @@ export default function ExperienceCard({
   description,
 }: ExperienceCardProps) {
   return (
-    <div className="border border-border h-44 rounded-sm p-5 flex flex-col gap-4 justify-between">
+    <div className="border border-border rounded-sm h-44 p-5 flex flex-col gap-4 justify-between">
       <div className="flex justify-between">
         <div className="flex flex-col gap-3">
           <h2 className="text-secondery font-medium">{position}</h2>

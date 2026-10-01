@@ -5,7 +5,7 @@ export default function AboutSec() {
     <>
       <section
         id="about"
-        className="scroll-mt-24 min-h-screen max-w-375 mx-auto lg:px-16 flex flex-col items-center gap-16"
+        className="scroll-mt-24 lg:min-h-screen max-w-375 mx-auto mt-16 lg:px-16 flex flex-col items-center gap-16"
       >
         <div className="w-250 flex flex-col gap-2">
           <h1 className="text-3xl font-medium text-secondery font-mono">
@@ -37,15 +37,24 @@ export default function AboutSec() {
             />
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-3">
             <h2 className="text-secondery font-medium text-xl font-mono">
               Skills
             </h2>
             <div className="grid grid-cols-2 gap-3">
-              <div className="border border-border h-44 rounded-sm"></div>
-              <div className="border border-border h-44 rounded-sm"></div>
-              <div className="border border-border h-44 rounded-sm"></div>
-              <div className="border border-border h-44 rounded-sm"></div>
+              <SkillCard
+                category="Frontend"
+                skills={["HTML", "CSS", "JavaScript", "React.js", "Next.js"]}
+              />
+              <SkillCard
+                category="Backend"
+                skills={["Node.js", "Express.js", "RestAPI"]}
+              />
+              <SkillCard
+                category="Database"
+                skills={["MongoDB", "PostgreSQL"]}
+              />
+              <SkillCard category="Tools" skills={["Figma", "Git", "GitHub"]} />
             </div>
           </div>
         </div>
