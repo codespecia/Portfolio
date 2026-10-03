@@ -59,7 +59,7 @@ export default function AboutSec() {
 
       <div className="flex w-full flex-col gap-8 sm:gap-10">
         {/* Experience Section */}
-        <ScrollReveal delay={150}>
+        <ScrollReveal delay={100}>
           <section
             aria-labelledby="experience-heading"
             className="flex w-full flex-col gap-3"
@@ -77,7 +77,7 @@ export default function AboutSec() {
         </ScrollReveal>
 
         {/* Skills Section */}
-        <ScrollReveal delay={150}>
+        <ScrollReveal delay={200}>
           <section
             aria-labelledby="skills-heading"
             className="flex w-full flex-col gap-3"
