@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface CTAButtonProps {
   href?: string;
   icon: string;
@@ -23,7 +25,7 @@ export default function CTAButton({
       className={`flex items-center justify-center gap-2 rounded-sm border-2 px-3 py-1 lg:text-sm lg:font-normal w-full lg:w-fit ${buttonclassName}`}
     >
       <p className={labelclassName}>{label}</p>
-      {icon && <img src={icon} alt={iconLabel} />}
+      {icon && <Image src={icon} alt={iconLabel} width={20} height={20} />}
     </a>
   );
 }
