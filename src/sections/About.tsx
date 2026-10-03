@@ -58,7 +58,7 @@ export default function AboutSec() {
 
       <div className="flex w-full flex-col gap-8 sm:gap-10">
         <ScrollReveal delay={100}>
-          <section
+          <div
             aria-labelledby="experience-heading"
             className="flex w-full flex-col gap-3"
           >
@@ -71,11 +71,11 @@ export default function AboutSec() {
             {EXPERIENCE_DATA.map((exp) => (
               <ExperienceCard key={`${exp.company}-${exp.position}`} {...exp} />
             ))}
-          </section>
+          </div>
         </ScrollReveal>
 
         <ScrollReveal delay={200}>
-          <section
+          <div
             aria-labelledby="skills-heading"
             className="flex w-full flex-col gap-3"
           >
@@ -90,7 +90,7 @@ export default function AboutSec() {
                 <SkillCard key={skill.category} {...skill} />
               ))}
             </div>
-          </section>
+          </div>
         </ScrollReveal>
       </div>
     </section>

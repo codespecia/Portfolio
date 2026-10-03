@@ -136,17 +136,17 @@ export default function Navbar() {
               aria-expanded={isOpen}
             >
               <span
-                className={`block h-0.5 w-5 rounded-full bg-primary transition-all duration-200 sm:w-6 sm:rounded-none ${
+                className={`block h-0.5 w-5 rounded-full bg-primary transition-all duration-150 sm:w-6 sm:rounded-none ${
                   isOpen ? "translate-y-1.5 rotate-45 sm:translate-y-2" : ""
                 }`}
               />
               <span
-                className={`block h-0.5 w-5 rounded-full bg-primary transition-all duration-200 sm:w-6 sm:rounded-none ${
+                className={`block h-0.5 w-5 rounded-full bg-primary transition-all duration-150 sm:w-6 sm:rounded-none ${
                   isOpen ? "opacity-0" : "opacity-100"
                 }`}
               />
               <span
-                className={`block h-0.5 w-5 rounded-full bg-primary transition-all duration-200 sm:w-6 sm:rounded-none ${
+                className={`block h-0.5 w-5 rounded-full bg-primary transition-all duration-150 sm:w-6 sm:rounded-none ${
                   isOpen ? "-translate-y-1.5 -rotate-45 sm:-translate-y-2" : ""
                 }`}
               />
@@ -155,10 +155,10 @@ export default function Navbar() {
         </div>
 
         <div
-          className={`absolute right-4 sm:right-6 top-16 z-50 w-48 sm:w-52 origin-top-right rounded-2xl border border-border bg-background/80 p-4 shadow-xl backdrop-blur-md transition-all ${
+          className={`absolute right-4 sm:right-6 top-16 z-50 w-48 sm:w-52 origin-top-right rounded-2xl border border-border bg-background/80 p-4 shadow-2xl backdrop-blur-md transition-all will-change-[transform,opacity] ${
             isOpen
-              ? "duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] scale-100 opacity-100 translate-y-0 pointer-events-auto"
-              : "duration-150 ease-in scale-75 opacity-0 -translate-y-3 pointer-events-none"
+              ? "duration-150 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] scale-100 opacity-100 pointer-events-auto"
+              : "duration-150 ease-in scale-80 opacity-0 pointer-events-none"
           } lg:hidden`}
         >
           <div className="flex flex-col items-end gap-3.5">

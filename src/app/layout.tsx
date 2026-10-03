@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/favicon.svg",
+        url: "/og-banner.webp",
         width: 1200,
         height: 630,
         alt: "codespecia | Rakibur Rahman - Full Stack Developer",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     title: "codespecia | Rakibur Rahman - Full Stack Developer",
     description:
       "Explore the portfolio of Rakibur Rahman, a professional Full Stack Developer creating responsive, reliable, and user-focused web solutions.",
-    images: ["/favicon.svg"],
+    images: ["/og-banner.webp"],
   },
 };
 

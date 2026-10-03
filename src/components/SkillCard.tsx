@@ -14,7 +14,7 @@ export default function SkillCard({ category, skills }: SkillCardProps) {
         {skills.map((skill) => (
           <span
             key={skill}
-            className="rounded-sm bg-cardBG px-2.5 py-1 text-xs font-normal text-secondery transition-all duration-300 hover:bg-secondery/10 sm:text-sm"
+            className="rounded-sm bg-cardBG px-2.5 py-1 text-xs font-normal text-secondery transition-all duration-100 hover:bg-secondery/10 sm:text-sm"
           >
             {skill}
           </span>

@@ -10,7 +10,13 @@ export function useIntersectionObserver(
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          if (entry.boundingClientRect.top > 0) {
+            setIsVisible(false);
+          }
+        }
       },
       { threshold, rootMargin }
     );
