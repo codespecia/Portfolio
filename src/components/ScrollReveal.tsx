@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useIntersectionObserver } from "@/hooks";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -13,25 +13,7 @@ export default function ScrollReveal({
   id,
   delay = 0,
 }: ScrollRevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1, rootMargin: "0px 0px 0px 0px" },
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+  const { ref, isVisible } = useIntersectionObserver(0.1, "0px 0px 0px 0px");
 
   return (
     <div id={id} ref={ref} className="w-full [overflow-anchor:none]">

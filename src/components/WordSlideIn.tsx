@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useDelayedVisibility } from "@/hooks";
 
 interface WordSlideInProps {
   text: string;
@@ -14,12 +14,7 @@ export default function WordSlideIn({
   delay = 100,
 }: WordSlideInProps) {
   const words = text.split(" ");
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
+  const isVisible = useDelayedVisibility(delay);
 
   return (
     <span className={`inline-flex flex-wrap justify-center ${className}`}>
