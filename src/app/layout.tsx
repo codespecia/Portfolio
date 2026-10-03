@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/favicon.svg", // Recommendation: Use a 1200x630 JPG/PNG for OpenGraph images instead of an SVG for best platform support.
+        url: "/favicon.svg",
         width: 1200,
         height: 630,
         alt: "codespecia | Rakibur Rahman - Full Stack Developer",

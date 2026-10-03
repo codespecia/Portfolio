@@ -8,7 +8,6 @@ export default function HomeSec() {
       className="min-h-dvh sm:min-h-screen max-w-375 mx-auto flex justify-center items-center px-4 sm:px-0 pt-0 pb-0 sm:pt-16"
     >
       <div className="flex justify-center items-center flex-col gap-4 w-full max-w-xl sm:w-xl h-fit">
-        {/* Availability Badge */}
         <ScrollReveal delay={0}>
           <div className="flex justify-center">
             <div className="flex items-center gap-2 w-fit border border-border px-2.5 py-1 text-xs rounded-md lg:gap-3 lg:pr-3 lg:pl-3 lg:pt-1.5 lg:pb-1.5 lg:text-sm">
@@ -18,7 +17,6 @@ export default function HomeSec() {
           </div>
         </ScrollReveal>
 
-        {/* Introduction Section */}
         <div className="flex flex-col gap-4 sm:gap-5">
           <div className="flex flex-col gap-1">
             <h1 className="text-4xl sm:text-6xl text-center font-mono font-medium">
@@ -39,7 +37,6 @@ export default function HomeSec() {
           </ScrollReveal>
         </div>
 
-        {/* Call to Action Buttons */}
         <ScrollReveal delay={600}>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 mt-3 w-full justify-center items-center">
             <CTAButton

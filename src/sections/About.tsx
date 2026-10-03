@@ -36,7 +36,6 @@ export default function AboutSec() {
       aria-labelledby="about-heading"
       className="mx-auto mt-16 flex min-h-screen w-full max-w-250 scroll-mt-24 flex-col items-center gap-10 px-4 sm:mt-20 sm:gap-12 sm:px-6 md:px-8 lg:mt-24 lg:gap-16 lg:px-12"
     >
-      {/* About Description */}
       <ScrollReveal delay={0}>
         <article className="flex w-full flex-col gap-2 sm:gap-3">
           <h2
@@ -58,7 +57,6 @@ export default function AboutSec() {
       </ScrollReveal>
 
       <div className="flex w-full flex-col gap-8 sm:gap-10">
-        {/* Experience Section */}
         <ScrollReveal delay={100}>
           <section
             aria-labelledby="experience-heading"
@@ -76,7 +74,6 @@ export default function AboutSec() {
           </section>
         </ScrollReveal>
 
-        {/* Skills Section */}
         <ScrollReveal delay={200}>
           <section
             aria-labelledby="skills-heading"
