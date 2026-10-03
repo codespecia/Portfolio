@@ -33,14 +33,18 @@ export default function AboutSec() {
   return (
     <section
       id="about"
+      aria-labelledby="about-heading"
       className="mx-auto mt-16 flex min-h-screen w-full max-w-250 scroll-mt-24 flex-col items-center gap-10 px-4 sm:mt-20 sm:gap-12 sm:px-6 md:px-8 lg:mt-24 lg:gap-16 lg:px-12"
     >
       {/* About Description */}
       <ScrollReveal delay={0}>
-        <div className="flex w-full flex-col gap-2 sm:gap-3">
-          <h1 className="font-mono text-2xl font-medium text-secondery sm:text-3xl">
+        <article className="flex w-full flex-col gap-2 sm:gap-3">
+          <h2
+            id="about-heading"
+            className="font-mono text-2xl font-medium text-secondery sm:text-3xl"
+          >
             About
-          </h1>
+          </h2>
           <p className="text-sm font-normal leading-relaxed text-primary sm:text-base">
             Software Developer specializing in high-performance web applications
             with strong foundations in UI/UX and SEO. Experienced in JavaScript,
@@ -50,34 +54,46 @@ export default function AboutSec() {
             maintenance, with a focus on building responsive, reliable, and user
             focused solutions.
           </p>
-        </div>
+        </article>
       </ScrollReveal>
 
       <div className="flex w-full flex-col gap-8 sm:gap-10">
         {/* Experience Section */}
         <ScrollReveal delay={150}>
-          <div className="flex w-full flex-col gap-3">
-            <h2 className="font-mono text-lg font-medium text-secondery sm:text-xl">
+          <section
+            aria-labelledby="experience-heading"
+            className="flex w-full flex-col gap-3"
+          >
+            <h3
+              id="experience-heading"
+              className="font-mono text-lg font-medium text-secondery sm:text-xl"
+            >
               Experience
-            </h2>
-            {EXPERIENCE_DATA.map((exp, index) => (
-              <ExperienceCard key={index} {...exp} />
+            </h3>
+            {EXPERIENCE_DATA.map((exp) => (
+              <ExperienceCard key={`${exp.company}-${exp.position}`} {...exp} />
             ))}
-          </div>
+          </section>
         </ScrollReveal>
 
         {/* Skills Section */}
         <ScrollReveal delay={150}>
-          <div className="flex w-full flex-col gap-3">
-            <h2 className="font-mono text-lg font-medium text-secondery sm:text-xl">
+          <section
+            aria-labelledby="skills-heading"
+            className="flex w-full flex-col gap-3"
+          >
+            <h3
+              id="skills-heading"
+              className="font-mono text-lg font-medium text-secondery sm:text-xl"
+            >
               Skills
-            </h2>
+            </h3>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
-              {SKILLS_DATA.map((skill, index) => (
-                <SkillCard key={index} {...skill} />
+              {SKILLS_DATA.map((skill) => (
+                <SkillCard key={skill.category} {...skill} />
               ))}
             </div>
-          </div>
+          </section>
         </ScrollReveal>
       </div>
     </section>
