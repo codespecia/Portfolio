@@ -16,15 +16,14 @@ export default function CTAButton({
   buttonclassName = "",
 }: CTAButtonProps) {
   return (
-    <>
-      <a
-        href={href}
-        target="_blank"
-        className={`flex gap-2 items-center lg:font-normal lg:text-sm px-3 py-1 rounded-sm border-2 ${buttonclassName}`}
-      >
-        <p className={labelclassName}>{label}</p>
-        {icon && <img src={icon} alt={iconLabel} />}
-      </a>
-    </>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`flex items-center justify-center gap-2 rounded-sm border-2 px-3 py-1 lg:text-sm lg:font-normal w-full lg:w-fit ${buttonclassName}`}
+    >
+      <p className={labelclassName}>{label}</p>
+      {icon && <img src={icon} alt={iconLabel} />}
+    </a>
   );
 }

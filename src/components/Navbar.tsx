@@ -1,41 +1,50 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const NAV_LINKS = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "projects", label: "Projects" },
+  { id: "services", label: "Services" },
+] as const;
+
+const SECTIONS = ["home", "about", "projects", "services", "contact"] as const;
 
 export default function Navbar() {
   const [active, setActive] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
 
-  const links = [
-    {
-      id: "home",
-      label: "Home",
-    },
-    {
-      id: "about",
-      label: "About",
-    },
-    {
-      id: "projects",
-      label: "Projects",
-    },
-    {
-      id: "services",
-      label: "Services",
-    },
-  ];
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    document.addEventListener("pointerdown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("pointerdown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "projects", "services", "contact"];
-
-      for (const id of sections) {
+      for (const id of SECTIONS) {
         const element = document.getElementById(id);
-
         if (!element) continue;
 
         const rect = element.getBoundingClientRect();
-
         if (rect.top <= 150 && rect.bottom >= 150) {
           setActive(id);
           break;
@@ -43,7 +52,8 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -52,55 +62,114 @@ export default function Navbar() {
 
   const handleNavigation = (id: string) => {
     const element = document.getElementById(id);
-
     if (!element) return;
 
-    const isMobile = window.innerWidth < 1024;
+    const width = window.innerWidth;
+    const navbarHeight = 56;
+    const gap = width >= 1024 ? 48 : width >= 640 ? 40 : 32;
 
-    const scrollToElement = () => {
-      const navbarHeight = 56;
-      const gap = 20;
+    const elementTop = element.getBoundingClientRect().top + window.scrollY;
+    const targetPosition = elementTop - navbarHeight - gap;
 
-      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+    setIsOpen(false);
 
-      const targetPosition = elementTop - navbarHeight - gap;
-
-      window.scrollTo({
-        top: Math.max(0, targetPosition),
-        behavior: "smooth",
-      });
-    };
-
-    if (isMobile) {
-      setIsOpen(false);
-
-      setTimeout(() => {
-        scrollToElement();
-      }, 200);
-    } else {
-      scrollToElement();
-    }
+    window.scrollTo({
+      top: Math.max(0, targetPosition),
+      behavior: "smooth",
+    });
   };
 
   return (
-    <nav className="fixed top-0 left-1/2 z-50 w-full max-w-400 -translate-x-1/2">
-      <div className="overflow-hidden border-b border-border bg-backgound/80 backdrop-blur-sm">
-        <div className="flex h-14 items-center justify-between px-6 lg:px-12">
-          <h1
-            onClick={() => handleNavigation("home")}
-            className="font-logo text-[18px] text-secondery"
-          >
-            codespecia.in
-          </h1>
+    <>
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-transparent lg:hidden"
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
+        />
+      )}
 
-          <div className="hidden items-center gap-8 lg:flex">
-            {links.map((link) => (
+      <nav
+        ref={navRef}
+        className="fixed top-0 left-0 right-0 z-50 w-full lg:left-1/2 lg:right-auto lg:w-full lg:max-w-400 lg:-translate-x-1/2"
+      >
+        <div className="w-full border-b border-border bg-background/80 backdrop-blur-md">
+          <div className="flex h-14 w-full items-center justify-between px-4 sm:px-6 lg:px-12">
+            <button
+              type="button"
+              onClick={() => handleNavigation("home")}
+              className="min-w-0 shrink-0 font-logo text-base text-secondery !cursor-default sm:text-[17px] lg:text-[18px]"
+            >
+              codespecia.in
+            </button>
+
+            <div className="hidden items-center gap-6 lg:flex xl:gap-8">
+              {NAV_LINKS.map((link) => (
+                <button
+                  key={link.id}
+                  type="button"
+                  onClick={() => handleNavigation(link.id)}
+                  className={`whitespace-nowrap text-sm font-medium transition-colors duration-200 ${
+                    active === link.id
+                      ? "text-secondery"
+                      : "text-primary hover:text-secondery"
+                  }`}
+                >
+                  {link.label}
+                </button>
+              ))}
+
+              <button
+                type="button"
+                onClick={() => handleNavigation("contact")}
+                className="shrink-0 whitespace-nowrap rounded-sm border-2 border-secondery bg-secondery px-3 py-1 text-sm font-medium text-gray-100 transition-opacity duration-200 hover:opacity-90"
+              >
+                Let&apos;s Talk
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setIsOpen((prev) => !prev)}
+              className="relative z-10 flex shrink-0 flex-col gap-1 p-2 -mr-2 lg:hidden sm:gap-1.5 sm:p-1 sm:-mr-0"
+              aria-label="Toggle navigation menu"
+              aria-expanded={isOpen}
+            >
+              <span
+                className={`block h-0.5 w-5 rounded-full bg-primary transition-all duration-200 sm:w-6 sm:rounded-none ${
+                  isOpen ? "translate-y-1.5 rotate-45 sm:translate-y-2" : ""
+                }`}
+              />
+              <span
+                className={`block h-0.5 w-5 rounded-full bg-primary transition-all duration-200 sm:w-6 sm:rounded-none ${
+                  isOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`block h-0.5 w-5 rounded-full bg-primary transition-all duration-200 sm:w-6 sm:rounded-none ${
+                  isOpen ? "-translate-y-1.5 -rotate-45 sm:-translate-y-2" : ""
+                }`}
+              />
+            </button>
+          </div>
+        </div>
+
+        <div
+          className={`absolute right-4 sm:right-6 top-16 z-50 w-48 sm:w-52 origin-top-right rounded-2xl border border-border bg-background/80 p-4 shadow-xl backdrop-blur-md transition-all ${
+            isOpen
+              ? "duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] scale-100 opacity-100 translate-y-0 pointer-events-auto"
+              : "duration-150 ease-in scale-75 opacity-0 -translate-y-3 pointer-events-none"
+          } lg:hidden`}
+        >
+          <div className="flex flex-col items-end gap-3.5">
+            {NAV_LINKS.map((link) => (
               <button
                 key={link.id}
+                type="button"
                 onClick={() => handleNavigation(link.id)}
-                className={`text-sm font-medium transition-colors duration-200 ${
+                className={`text-right text-sm font-medium transition-colors duration-200 ${
                   active === link.id
-                    ? "text-secondery"
+                    ? "text-secondery font-semibold"
                     : "text-primary hover:text-secondery"
                 }`}
               >
@@ -109,73 +178,15 @@ export default function Navbar() {
             ))}
 
             <button
+              type="button"
               onClick={() => handleNavigation("contact")}
-              className="rounded-sm border-2 border-secondery bg-secondery px-3 py-1 text-sm font-medium text-gray-100 transition-opacity duration-200 hover:opacity-90"
+              className="mt-1 w-full rounded-sm border-2 border-secondery bg-secondery px-3 py-1.5 text-center text-sm font-medium text-gray-100"
             >
-              Let's Talk
+              Let&apos;s Talk
             </button>
           </div>
-
-          <button
-            type="button"
-            onClick={() => setIsOpen((prev) => !prev)}
-            className="flex flex-col gap-1.5 lg:hidden"
-            aria-label="Toggle navigation menu"
-            aria-expanded={isOpen}
-          >
-            <span
-              className={`block h-0.5 w-6 bg-primary transition-all duration-200 ${
-                isOpen ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-
-            <span
-              className={`block h-0.5 w-6 bg-primary transition-all duration-200 ${
-                isOpen ? "opacity-0" : ""
-              }`}
-            />
-
-            <span
-              className={`block h-0.5 w-6 bg-primary transition-all duration-200 ${
-                isOpen ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
-          </button>
         </div>
-
-        <div
-          className={`grid transition-all duration-200 ease-out lg:hidden ${
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-          }`}
-        >
-          <div className="min-h-0 overflow-hidden">
-            <div className="border-t border-border/60">
-              <div className="flex flex-col items-end gap-5 px-6 py-6">
-                {links.map((link) => (
-                  <button
-                    key={link.id}
-                    onClick={() => handleNavigation(link.id)}
-                    className={`text-right text-sm font-medium transition-colors duration-200 ${
-                      active === link.id
-                        ? "text-secondery"
-                        : "text-primary hover:text-secondery"
-                    }`}
-                  >
-                    {link.label}
-                  </button>
-                ))}
-
-                <button
-                  onClick={() => handleNavigation("contact")}
-                  className="rounded-sm border-2 border-secondery bg-secondery px-4 py-2 text-sm font-medium text-gray-100 transition-opacity duration-200 hover:opacity-90"
-                >
-                  Let's Talk
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }

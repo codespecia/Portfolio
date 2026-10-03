@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/index";
+import { Navbar, ScrollReveal } from "@/components/index";
 import {
   HomeSec,
   AboutSec,

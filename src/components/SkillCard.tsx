@@ -5,11 +5,17 @@ interface SkillCardProps {
 
 export default function SkillCard({ category, skills }: SkillCardProps) {
   return (
-    <div className="border border-border h-36 rounded-sm p-5 flex flex-col gap-4">
-      <h2 className="font-medium">{category}</h2>
-      <div className="flex gap-2 flex-wrap">
+    <div className="flex h-auto min-h-36 flex-col gap-3 rounded-sm border border-border p-4 sm:gap-4 sm:p-5">
+      <h3 className="text-base font-medium text-secondery sm:text-lg">
+        {category}
+      </h3>
+
+      <div className="flex flex-wrap gap-2">
         {skills.map((skill) => (
-          <span className="bg-cardBG px-2 py-1 rounded-sm text-sm" key={skill}>
+          <span
+            key={skill}
+            className="rounded-sm bg-cardBG px-2.5 py-1 text-xs font-normal text-secondery transition-all duration-300 hover:bg-secondery/10 sm:text-sm"
+          >
             {skill}
           </span>
         ))}
