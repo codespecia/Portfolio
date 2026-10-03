@@ -29,7 +29,7 @@ export default function WordSlideIn({
           className="inline-block overflow-hidden mr-[0.25em] last:mr-0"
         >
           <span
-            className={`inline-block transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`inline-block transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity,filter] ${
               isVisible
                 ? "translate-y-0 opacity-100 blur-0"
                 : "translate-y-full opacity-0 blur-sm"
